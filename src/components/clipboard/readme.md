@@ -49,4 +49,4 @@ Type: `Promise<void>`
 
 ----------------------------------------------
 
-*Built with love by Revolist OU*
+*Built with [StencilJS](https://stenciljs.com/)*

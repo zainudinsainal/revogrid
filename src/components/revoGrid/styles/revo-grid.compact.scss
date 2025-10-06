@@ -1,6 +1,6 @@
-@import './revo-grid.mixin.scss';
-@import './revo-grid.common-material.scss';
-@import './revo-grid.common.light.scss';
+@use './revo-grid.mixin.scss' as *;
+@use './revo-grid.common-material.scss' as *;
+@use './revo-grid.common.light.scss' as *;
 
 revo-grid[theme='compact'] {
   $header-height: 45px;

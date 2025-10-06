@@ -50,4 +50,4 @@ graph TD;
 
 ----------------------------------------------
 
-*Built with love by Revolist OU*
+*Built with [StencilJS](https://stenciljs.com/)*

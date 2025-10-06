@@ -1,6 +1,7 @@
 @mixin revoGridLight() {
   $cell-border-color: #f1f1f1;
   $header-border-color: $cell-border-color;
+  $cell-disabled-bg: #f7f7f7;
 
   $cell-shadow-cell: 0 -1px 0 0 $cell-border-color inset;
 

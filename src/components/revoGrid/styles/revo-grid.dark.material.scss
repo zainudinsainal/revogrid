@@ -1,6 +1,6 @@
-@import './revo-grid.mixin.scss';
-@import './revo-grid.common-material.scss';
-@import './revo-grid.common.dark.scss';
+@use './revo-grid.mixin.scss' as *;
+@use './revo-grid.common-material.scss' as *;
+@use './revo-grid.common.dark.scss' as *;
 
 revo-grid[theme='darkMaterial'] {
   $header-height: 50px;

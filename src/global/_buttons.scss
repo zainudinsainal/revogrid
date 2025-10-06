@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .revo-button {
   $h: 34px;
   position: relative;
@@ -16,13 +18,13 @@
   &.green {
     $bg: #009037;
     background-color: $bg;
-    border: 1px solid darken($color: $bg, $amount: 5);
+    border: 1px solid color.scale($bg, $lightness: -5%);
   }
 
   &.red {
     $bg: #E0662E;
     background-color: $bg;
-    border: 1px solid darken($color: $bg, $amount: 5);
+    border: 1px solid color.scale($bg, $lightness: -5%);
   }
 
   &:disabled,
@@ -41,6 +43,6 @@
     box-shadow: none;
   }
 
-  
-  
+
+
 }

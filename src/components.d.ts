@@ -54,22 +54,27 @@ export namespace Components {
         "addTrimmed": (trimmed: Record<number, boolean>, trimmedType?: string, type?: DimensionRows) => Promise<CustomEvent<{ trimmed: Record<number, boolean>; trimmedType: string; type: string; }>>;
         /**
           * Additional data to be passed to plugins, renders or editors. For example if you need to pass Vue component instance.
+          * @default {}
          */
         "additionalData": any;
         /**
           * Apply changes in editor when closed except 'Escape' cases. If custom editor in use method getValue required. Check interfaces.d.ts `EditorBase` for more info.
+          * @default false
          */
         "applyOnClose": boolean;
         /**
           * Autosize config. Enables columns autoSize. For more details check `autoSizeColumn` plugin. By default disabled, hence operation is not performance efficient. `true` to enable with default params (double header separator click for autosize). Or define config. See `AutoSizeColumnConfig` for more details.
+          * @default false
          */
         "autoSizeColumn": boolean | AutoSizeColumnConfig;
         /**
           * When true cell focus appear.
+          * @default true
          */
         "canFocus": boolean;
         /**
           * Enable column move plugin.
+          * @default false
          */
         "canMoveColumns": boolean;
         /**
@@ -82,34 +87,42 @@ export namespace Components {
         "clearSorting": () => Promise<void>;
         /**
           * Indicates default column size.
+          * @default 100
          */
         "colSize": number;
         /**
           * Column Types Format. Every type represent multiple column properties. Types will be merged but can be replaced with column properties. Types were made as separate objects to be reusable per multiple columns.
+          * @default {}
          */
         "columnTypes": { [name: string]: ColumnType };
         /**
           * Columns - defines an array of grid columns. Can be column or grouped column.
+          * @default []
          */
         "columns": (ColumnRegular | ColumnGrouping)[];
         /**
           * Disable lazy rendering mode for the `X axis`. Use when not many columns present and you don't need rerenader cells during scroll. Can be used for initial rendering performance improvement.
+          * @default false
          */
         "disableVirtualX": boolean;
         /**
           * Disable lazy rendering mode for the `Y axis`. Use when not many rows present and you don't need rerenader cells during scroll. Can be used for initial rendering performance improvement.
+          * @default false
          */
         "disableVirtualY": boolean;
         /**
           * Custom editors register.
+          * @default {}
          */
         "editors": Editors;
         /**
           * Enable export plugin.
+          * @default false
          */
         "exporting": boolean;
         /**
           * Enables filter plugin. Can be boolean. Or can be filter collection See `FilterCollection` for more info.
+          * @default false
          */
         "filter": boolean | ColumnFilterConfig;
         /**
@@ -118,6 +131,7 @@ export namespace Components {
         "focusTemplate": FocusTemplateFunc;
         /**
           * Defines how many rows/columns should be rendered outside visible area.
+          * @default 1
          */
         "frameSize": number;
         /**
@@ -165,14 +179,17 @@ export namespace Components {
         "grouping": GroupingOptions;
         /**
           * Prevent rendering until job is done. Can be used for initial rendering performance improvement. When several plugins require initial rendering this will prevent double initial rendering.
+          * @default []
          */
         "jobsBeforeRender": Promise<any>[];
         /**
           * Pinned bottom Source: {[T in ColumnProp]: any} - defines pinned bottom rows data source.
+          * @default []
          */
         "pinnedBottomSource": DataType[];
         /**
           * Pinned top Source: {[T in ColumnProp]: any} - defines pinned top rows data source.
+          * @default []
          */
         "pinnedTopSource": DataType[];
         /**
@@ -181,30 +198,35 @@ export namespace Components {
         "plugins": PluginExternalConstructor[];
         /**
           * When true, user can range selection.
+          * @default false
          */
         "range": boolean;
         /**
           * When true, grid in read only mode.
+          * @default false
          */
         "readonly": boolean;
         /**
           * Refreshes data viewport. Can be specific part as rgRow or pinned rgRow or 'all' by default.
          */
-        "refresh": (type?: DimensionRows | 'all') => Promise<void>;
+        "refresh": (type?: DimensionRows | "all") => Promise<void>;
         /**
           * Register new virtual node inside of grid Used for additional items creation such as plugin elements
          */
         "registerVNode": (elements: VNode[]) => Promise<void>;
         /**
           * When true, columns are resizable.
+          * @default false
          */
         "resize": boolean;
         /**
           * Row class property mapping. Map custom classes to rows from row object data. Define this property in rgRow object and this will be mapped as rgRow class.
+          * @default ''
          */
         "rowClass": string;
         /**
           * Custom row properies to be applied. See `RowDefinition` for more info.
+          * @default []
          */
         "rowDefinitions": RowDefinition[];
         /**
@@ -213,6 +235,7 @@ export namespace Components {
         "rowHeaders": RowHeaders | boolean;
         /**
           * Indicates default rgRow size. By default 0, means theme package size will be applied
+          * @default 0
          */
         "rowSize": number;
         /**
@@ -241,18 +264,22 @@ export namespace Components {
         "setCellsFocus": (cellStart?: Cell, cellEnd?: Cell, colType?: string, rowType?: string) => Promise<void>;
         /**
           * Source - defines main data source. Can be an Object or 2 dimensional array([][]); Keys/indexes referenced from columns Prop.
+          * @default []
          */
         "source": DataType[];
         /**
           * Stretch strategy for columns by `StretchColumn` plugin. For example if there are more space on the right last column size would be increased.
+          * @default true
          */
         "stretch": boolean | string;
         /**
           * Theme name.
+          * @default 'default'
          */
         "theme": Theme;
         /**
           * Trimmed rows. Functionality which allows to hide rows from main data set. `trimmedRows` are physical `rgRow` indexes to hide.
+          * @default {}
          */
         "trimmedRows": Record<number, boolean>;
         /**
@@ -261,13 +288,14 @@ export namespace Components {
           * @param index - virtual column index
           * @param order - order to apply
          */
-        "updateColumnSorting": (column: ColumnRegular, index: number, order: 'asc' | 'desc', additive: boolean) => Promise<ColumnRegular>;
+        "updateColumnSorting": (column: ColumnRegular, index: number, order: "asc" | "desc", additive: boolean) => Promise<ColumnRegular>;
         /**
           * Update columns
          */
         "updateColumns": (cols: ColumnRegular[]) => Promise<void>;
         /**
           * When true enable clipboard.
+          * @default true
          */
         "useClipboard": boolean;
     }
@@ -399,15 +427,31 @@ export namespace Components {
         "editor": EditorCtr | null;
         /**
           * Save on editor close
+          * @default false
          */
         "saveOnClose": boolean;
     }
     interface RevogrFilterPanel {
+        /**
+          * @default false
+         */
         "disableDynamicFiltering": boolean;
         "filterCaptions": FilterCaptions | undefined;
+        /**
+          * @default {}
+         */
         "filterEntities": Record<string, LogicFunction>;
+        /**
+          * @default {}
+         */
         "filterItems": MultiFilterItem;
+        /**
+          * @default {}
+         */
         "filterNames": Record<string, string>;
+        /**
+          * @default {}
+         */
         "filterTypes": Record<string, string[]>;
         "getChanges": () => Promise<ShowData>;
         "show": (newEntity?: ShowData) => Promise<void>;
@@ -439,6 +483,7 @@ export namespace Components {
         "dimensionRow": Observable<DimensionSettingsState>;
         /**
           * Focus template custom function. Can be used to render custom focus layer.
+          * @default null
          */
         "focusTemplate": FocusTemplateFunc | null;
         /**
@@ -453,6 +498,7 @@ export namespace Components {
     interface RevogrHeader {
         /**
           * Extra properties to pass into header renderer, such as vue or react components to handle parent
+          * @default {}
          */
         "additionalData": any;
         /**
@@ -473,6 +519,7 @@ export namespace Components {
         "dimensionCol": Observable<DimensionSettingsState>;
         /**
           * Grouping depth, how many levels of grouping
+          * @default 0
          */
         "groupingDepth": number;
         /**
@@ -528,6 +575,7 @@ export namespace Components {
         "additionalData": any;
         /**
           * If true applys changes when cell closes if not Escape
+          * @default false
          */
         "applyChangesOnClose": boolean;
         /**
@@ -623,6 +671,7 @@ export namespace Components {
         "changeScroll": (e: ViewPortScrollEvent) => Promise<ViewPortScrollEvent>;
         /**
           * Scroll dimension (`X` - `rgCol` or `Y` - `rgRow`)
+          * @default 'rgRow'
          */
         "dimension": DimensionType;
         /**
@@ -667,10 +716,12 @@ export namespace Components {
         "changeScroll": (e: ViewPortScrollEvent, silent?: boolean) => Promise<ViewPortScrollEvent>;
         /**
           * Height of inner content
+          * @default 0
          */
         "contentHeight": number;
         /**
           * Width of inner content
+          * @default 0
          */
         "contentWidth": number;
         /**
@@ -1148,54 +1199,67 @@ declare namespace LocalJSX {
     interface RevoGrid {
         /**
           * Additional data to be passed to plugins, renders or editors. For example if you need to pass Vue component instance.
+          * @default {}
          */
         "additionalData"?: any;
         /**
           * Apply changes in editor when closed except 'Escape' cases. If custom editor in use method getValue required. Check interfaces.d.ts `EditorBase` for more info.
+          * @default false
          */
         "applyOnClose"?: boolean;
         /**
           * Autosize config. Enables columns autoSize. For more details check `autoSizeColumn` plugin. By default disabled, hence operation is not performance efficient. `true` to enable with default params (double header separator click for autosize). Or define config. See `AutoSizeColumnConfig` for more details.
+          * @default false
          */
         "autoSizeColumn"?: boolean | AutoSizeColumnConfig;
         /**
           * When true cell focus appear.
+          * @default true
          */
         "canFocus"?: boolean;
         /**
           * Enable column move plugin.
+          * @default false
          */
         "canMoveColumns"?: boolean;
         /**
           * Indicates default column size.
+          * @default 100
          */
         "colSize"?: number;
         /**
           * Column Types Format. Every type represent multiple column properties. Types will be merged but can be replaced with column properties. Types were made as separate objects to be reusable per multiple columns.
+          * @default {}
          */
         "columnTypes"?: { [name: string]: ColumnType };
         /**
           * Columns - defines an array of grid columns. Can be column or grouped column.
+          * @default []
          */
         "columns"?: (ColumnRegular | ColumnGrouping)[];
         /**
           * Disable lazy rendering mode for the `X axis`. Use when not many columns present and you don't need rerenader cells during scroll. Can be used for initial rendering performance improvement.
+          * @default false
          */
         "disableVirtualX"?: boolean;
         /**
           * Disable lazy rendering mode for the `Y axis`. Use when not many rows present and you don't need rerenader cells during scroll. Can be used for initial rendering performance improvement.
+          * @default false
          */
         "disableVirtualY"?: boolean;
         /**
           * Custom editors register.
+          * @default {}
          */
         "editors"?: Editors;
         /**
           * Enable export plugin.
+          * @default false
          */
         "exporting"?: boolean;
         /**
           * Enables filter plugin. Can be boolean. Or can be filter collection See `FilterCollection` for more info.
+          * @default false
          */
         "filter"?: boolean | ColumnFilterConfig;
         /**
@@ -1204,6 +1268,7 @@ declare namespace LocalJSX {
         "focusTemplate"?: FocusTemplateFunc;
         /**
           * Defines how many rows/columns should be rendered outside visible area.
+          * @default 1
          */
         "frameSize"?: number;
         /**
@@ -1212,6 +1277,7 @@ declare namespace LocalJSX {
         "grouping"?: GroupingOptions;
         /**
           * Prevent rendering until job is done. Can be used for initial rendering performance improvement. When several plugins require initial rendering this will prevent double initial rendering.
+          * @default []
          */
         "jobsBeforeRender"?: Promise<any>[];
         /**
@@ -1387,10 +1453,12 @@ declare namespace LocalJSX {
         "onViewportscroll"?: (event: RevoGridCustomEvent<ViewPortScrollEvent>) => void;
         /**
           * Pinned bottom Source: {[T in ColumnProp]: any} - defines pinned bottom rows data source.
+          * @default []
          */
         "pinnedBottomSource"?: DataType[];
         /**
           * Pinned top Source: {[T in ColumnProp]: any} - defines pinned top rows data source.
+          * @default []
          */
         "pinnedTopSource"?: DataType[];
         /**
@@ -1399,22 +1467,27 @@ declare namespace LocalJSX {
         "plugins"?: PluginExternalConstructor[];
         /**
           * When true, user can range selection.
+          * @default false
          */
         "range"?: boolean;
         /**
           * When true, grid in read only mode.
+          * @default false
          */
         "readonly"?: boolean;
         /**
           * When true, columns are resizable.
+          * @default false
          */
         "resize"?: boolean;
         /**
           * Row class property mapping. Map custom classes to rows from row object data. Define this property in rgRow object and this will be mapped as rgRow class.
+          * @default ''
          */
         "rowClass"?: string;
         /**
           * Custom row properies to be applied. See `RowDefinition` for more info.
+          * @default []
          */
         "rowDefinitions"?: RowDefinition[];
         /**
@@ -1423,26 +1496,32 @@ declare namespace LocalJSX {
         "rowHeaders"?: RowHeaders | boolean;
         /**
           * Indicates default rgRow size. By default 0, means theme package size will be applied
+          * @default 0
          */
         "rowSize"?: number;
         /**
           * Source - defines main data source. Can be an Object or 2 dimensional array([][]); Keys/indexes referenced from columns Prop.
+          * @default []
          */
         "source"?: DataType[];
         /**
           * Stretch strategy for columns by `StretchColumn` plugin. For example if there are more space on the right last column size would be increased.
+          * @default true
          */
         "stretch"?: boolean | string;
         /**
           * Theme name.
+          * @default 'default'
          */
         "theme"?: Theme;
         /**
           * Trimmed rows. Functionality which allows to hide rows from main data set. `trimmedRows` are physical `rgRow` indexes to hide.
+          * @default {}
          */
         "trimmedRows"?: Record<number, boolean>;
         /**
           * When true enable clipboard.
+          * @default true
          */
         "useClipboard"?: boolean;
     }
@@ -1652,15 +1731,31 @@ declare namespace LocalJSX {
         "onCloseEdit"?: (event: RevogrEditCustomEvent<boolean | undefined>) => void;
         /**
           * Save on editor close
+          * @default false
          */
         "saveOnClose"?: boolean;
     }
     interface RevogrFilterPanel {
+        /**
+          * @default false
+         */
         "disableDynamicFiltering"?: boolean;
         "filterCaptions"?: FilterCaptions | undefined;
+        /**
+          * @default {}
+         */
         "filterEntities"?: Record<string, LogicFunction>;
+        /**
+          * @default {}
+         */
         "filterItems"?: MultiFilterItem;
+        /**
+          * @default {}
+         */
         "filterNames"?: Record<string, string>;
+        /**
+          * @default {}
+         */
         "filterTypes"?: Record<string, string[]>;
         "onFilterChange"?: (event: RevogrFilterPanelCustomEvent<MultiFilterItem>) => void;
         "uuid"?: string;
@@ -1691,6 +1786,7 @@ declare namespace LocalJSX {
         "dimensionRow": Observable<DimensionSettingsState>;
         /**
           * Focus template custom function. Can be used to render custom focus layer.
+          * @default null
          */
         "focusTemplate"?: FocusTemplateFunc | null;
         /**
@@ -1720,6 +1816,7 @@ declare namespace LocalJSX {
     interface RevogrHeader {
         /**
           * Extra properties to pass into header renderer, such as vue or react components to handle parent
+          * @default {}
          */
         "additionalData"?: any;
         /**
@@ -1740,6 +1837,7 @@ declare namespace LocalJSX {
         "dimensionCol"?: Observable<DimensionSettingsState>;
         /**
           * Grouping depth, how many levels of grouping
+          * @default 0
          */
         "groupingDepth"?: number;
         /**
@@ -1836,6 +1934,7 @@ declare namespace LocalJSX {
         "additionalData"?: any;
         /**
           * If true applys changes when cell closes if not Escape
+          * @default false
          */
         "applyChangesOnClose"?: boolean;
         /**
@@ -2024,6 +2123,7 @@ declare namespace LocalJSX {
     interface RevogrScrollVirtual {
         /**
           * Scroll dimension (`X` - `rgCol` or `Y` - `rgRow`)
+          * @default 'rgRow'
          */
         "dimension"?: DimensionType;
         /**
@@ -2062,10 +2162,12 @@ declare namespace LocalJSX {
     interface RevogrViewportScroll {
         /**
           * Height of inner content
+          * @default 0
          */
         "contentHeight"?: number;
         /**
           * Width of inner content
+          * @default 0
          */
         "contentWidth"?: number;
         /**

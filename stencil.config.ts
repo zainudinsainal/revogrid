@@ -15,17 +15,18 @@ const directivesProxyFile = (name: string, filepath = entry) =>
 export const config: Config = {
   // https://github.com/ionic-team/stencil/blob/master/src/declarations/stencil-public-compiler.ts
   enableCache: true,
-  hashFileNames: false,
+  hashFileNames: true,
+  hashedFileNameLength: 8,
   autoprefixCss: false,
   minifyCss: true,
+  minifyJs: true,
   preamble: 'Built by Revolist OU',
-  hashedFileNameLength: 8,
-  invisiblePrehydration: false,
+  invisiblePrehydration: true,
+  sourceMap: false,
   extras: {
     // This is to tackle an Angular specific performance issue:
     initializeNextTick: true,
-    // Don’t need any of these so setting them to “false”:
-    scriptDataOpts: false,
+    // Don't need any of these so setting them to "false":
     appendChildSlotFix: false,
     cloneNodeFix: false,
     slotChildNodesFix: false,
@@ -33,10 +34,13 @@ export const config: Config = {
     enableImportInjection: true,
   },
 
-  // buildEs5: 'prod',
   namespace: 'revo-grid',
   taskQueue: 'async',
   globalScript: './src/global/global.ts',
+  validatePrimaryPackageOutputTarget: true,
+  nodeResolve: {
+    preferBuiltins: true,
+  },
   plugins: [
     sass({
       injectGlobalPaths: [
@@ -49,35 +53,11 @@ export const config: Config = {
   ],
   // proxies
   outputTargets: [
-    angularOutputTarget({
-      componentCorePackage,
-      directivesProxyFile: directivesProxyFile('angular', `proxies/${entry}`),
-      valueAccessorConfigs: [],
-    }),
-    reactOutputTarget({
-      componentCorePackage,
-      proxiesFile: directivesProxyFile('react'),
-    }),
-
     vueOutputTarget({
       componentCorePackage,
-      proxiesFile: directivesProxyFile('vue'),
+      proxiesFile: directivesProxyFile('vue3'),
       includeDefineCustomElements: true,
-      componentModels: [],
-    }),
-    svelteOutputTarget({
-      componentCorePackage,
-      proxiesFile: directivesProxyFile('svelte'),
-      includeDefineCustomElements: true,
-      legacy: false,
       includePolyfills: false,
-    }),
-    vue2OutputTarget({
-      componentCorePackage,
-      proxiesFile: directivesProxyFile('vue2'),
-      includeDefineCustomElements: true,
-      loaderDir: 'custom-element',
-      componentModels: [],
     }),
     // custom element, no polifil
     {
@@ -91,22 +71,7 @@ export const config: Config = {
       type: 'dist',
       esmLoaderPath: '../loader',
       empty: true,
-    },
-    {
-      type: 'docs-readme',
-      footer: '*Built with love by Revolist OU*',
-    },
-    {
-      type: 'docs-vscode',
-      file: 'vscode-data.json',
-    },
-    {
-      type: 'www',
-      copy: [
-        { src: 'serve', dest: '.' },
-        { src: '../node_modules/bootstrap/dist', dest: './bootstrap' },
-      ],
-      serviceWorker: null, // disable service workers
+      isPrimaryPackageOutputTarget: true,
     },
   ],
 };

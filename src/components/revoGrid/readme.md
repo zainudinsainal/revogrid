@@ -5,7 +5,7 @@
 
 ## Overview
 
-`revo-grid`: High-performance, customizable grid component for managing large datasets.
+`revo-grid`: High-performance, customizable grid library for managing large datasets.
 
 ## Properties
 
@@ -242,7 +242,7 @@ Type: `Promise<any[]>`
 
 
 
-### `refresh(type?: DimensionRows | 'all') => Promise<void>`
+### `refresh(type?: DimensionRows | "all") => Promise<void>`
 
 Refreshes data viewport.
 Can be specific part as rgRow or pinned rgRow or 'all' by default.
@@ -380,7 +380,7 @@ Type: `Promise<void>`
 
 
 
-### `updateColumnSorting(column: ColumnRegular, index: number, order: 'asc' | 'desc', additive: boolean) => Promise<ColumnRegular>`
+### `updateColumnSorting(column: ColumnRegular, index: number, order: "asc" | "desc", additive: boolean) => Promise<ColumnRegular>`
 
 Update column sorting
 
@@ -459,4 +459,4 @@ graph TD;
 
 ----------------------------------------------
 
-*Built with love by Revolist OU*
+*Built with [StencilJS](https://stenciljs.com/)*

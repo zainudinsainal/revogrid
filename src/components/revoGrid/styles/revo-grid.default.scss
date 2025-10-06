@@ -1,4 +1,4 @@
-@import './revo-grid.mixin.scss';
+@use './revo-grid.mixin.scss' as *;
 
 revo-grid[theme='default'] {
   $header-size: 30px;
